@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+ 
+  
+
+  <link rel="icon" href="https://cdn2.scratch.mit.edu/get_image/project/571055303_100x80.png">
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+
+  <title>CodePen - Rich Text Editor</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-vlOMx0hKjUCl4WzuhIhSNZSm2yQCaf0mOU1hEDK/iztH3gU4v5NMmJln9273A6Jz" crossorigin="anonymous">
+  
+  
+  
+<style>
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.tool-list {
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+  padding: 0;
+  margin: 1rem;
+  overflow: hidden;
+  border-raduis: 10px;
+}
+
+.tool--btn {
+  display: block;
+  border: none;
+  padding: 0.5rem;
+  font-size: 20px;
+}
+
+#output {
+  height: 1000px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  margin: 1rem;
+  padding: 1rem;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <div class="toolbar">
+	<ul class="tool-list">
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command='justifyLeft'
+				class="tool--btn">
+				<i class=' fas fa-align-left'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command='justifyCenter' 
+				class="tool--btn">
+				<i class=' fas fa-align-center'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="bold" 
+				class="tool--btn">
+				<i class=' fas fa-bold'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="italic"
+				class="tool--btn">
+				<i class=' fas fa-italic'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="underline"
+				class="tool--btn">
+				<i class=' fas fa-underline'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="insertOrderedList"
+				class="tool--btn">
+				<i class=' fas fa-list-ol'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="insertUnorderedList"
+				class="tool--btn">
+				<i class=' fas fa-list-ul'></i>
+			</button>
+		</li>
+		<li class="tool">
+			<button 
+				type="button" 
+				data-command="createlink" 
+				class="tool--btn">
+				<i class=' fas fa-link'></i>
+			</button>
+		</li>
+	</ul>
+</div>
+
+<div id="output" contenteditable="true"></div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  
+      <script id="rendered-js" >
+let output = document.getElementById('output');
+let buttons = document.getElementsByClassName('tool--btn');
+for (let btn of buttons) {
+  btn.addEventListener('click', () => {
+    let cmd = btn.dataset['command'];
+    if (cmd === 'createlink') {
+      let url = prompt("Enter the link here: ", "http:\/\/");
+      document.execCommand(cmd, false, url);
+    } else {
+      document.execCommand(cmd, false, null);
+    }
+  });
+}
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
